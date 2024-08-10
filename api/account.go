@@ -9,8 +9,8 @@ import (
 )
 
 type createAccountRequest struct {
-	Owner    string `json:"owner" binding: "required"`
-	Currency string `json:"currency" binding: "required,oneof=USD EUR"`
+	Owner    string `json:"owner" binding:"required"`
+	Currency string `json:"currency" binding:"required,oneof=USD EUR"`
 }
 
 func (server *Server) createAccount(ctx *gin.Context) {
@@ -37,7 +37,7 @@ func (server *Server) createAccount(ctx *gin.Context) {
 }
 
 type getAccountRequest struct {
-	ID int64 `url:"id" binding: "required, min=1"`
+	ID int64 `url:"id" binding:"required,min=1"`
 }
 
 func (server *Server) getAccount(ctx *gin.Context) {
