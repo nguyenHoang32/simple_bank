@@ -29,4 +29,7 @@ startpostgres:
 test:
 	go test -v -cover ./...
 
-.PHONY: createdb dropdb migrateup migratedown test
+server:
+	go run main.go
+
+.PHONY: createdb dropdb migrateup migratedown test server
