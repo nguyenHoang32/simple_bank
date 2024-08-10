@@ -63,3 +63,24 @@ func (server *Server) getAccount(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, account)
 
 }
+
+type getListAccountRequest struct {
+	PageID   int32 `form:"page_id" binding:"min=1"`
+	PageSize int32 `form:"page_size" binding:"min=5,max=20"`
+}
+
+func (sever *Server) getListAccount(ctx *gin.Context) {
+	var req = &getListAccountRequest{
+		PageID:   1,
+		PageSize: 10,
+	}
+
+	if err := ctx.ShouldBindQuery(&req); err != nil {
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+		return
+	}
+	// Not have auth yet. Todo
+	// arg := db.ListAccountsParams{}
+	return
+
+}
